@@ -8,7 +8,6 @@
 #include <stdlib.h>
 #include <assert.h>
 
-#define HISTORY_FILE_PATH "data/history.txt"
 #define HISTORY_COUNT 64
 
 // 4 5 6 _ 1 2 3
@@ -22,7 +21,7 @@ static int position;
 static int undo;
 
 void load_history_from_file() {
-  FILE* file = fopen(HISTORY_FILE_PATH, "r");
+  FILE* file = fopen(HISTORY_PATH, "r");
   assert(file);
   size_t n = 0;
   char* line;
@@ -81,7 +80,7 @@ void history_enter() {
     if (position == HISTORY_COUNT) position = 0;
 
     // Save all items.
-    FILE* file = fopen(HISTORY_FILE_PATH, "w");
+    FILE* file = fopen(HISTORY_PATH, "w");
 
     int save_index = position - count;
     if (save_index < 0) save_index += HISTORY_COUNT;

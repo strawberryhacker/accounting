@@ -30,6 +30,7 @@ typedef struct {
   bool print_ref;
   bool print_zeros;
   bool no_grid;
+  bool percent;
   bool flat;
 } Command;
 

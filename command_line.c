@@ -27,8 +27,8 @@ const char* binop[] = {
   "<=",
   ">=",
   "!=",
-  "|",
-  "&",
+  "or",
+  "and",
   "*",
   "/",
   "+",
@@ -120,9 +120,6 @@ static void* parse_filter_primary(char** cursor) {
     char* data = get_string_arena(cursor);    
     Account* node = get_account(data);
 
-    debug("Filling account info: %s\n", data);
-    debug("Fonud account: %d %d\n", node->index, node->count);
-
     if (!node) {
       error_message = "invalid account";
       return 0;
@@ -137,12 +134,11 @@ static void* parse_filter_primary(char** cursor) {
 }
 
 static void* parse_filter_unary(char** cursor) {
-  debug("Unary string: %s\n", *cursor);
   if (skip_string(cursor, "not")) {
-    debug("Testing xo xo xo xo \n");
     UnaryFilter* unary = new_filter(FILTER_UNARY);
     unary->type = UNARY_NOT;
     unary->filter = parse_filter_unary(cursor);
+    if (unary->filter == 0) return 0;
     return unary;
   } else if (skip_char(cursor, '(')) {
     Filter* filter = parse_filter(cursor);
@@ -586,7 +582,7 @@ static bool parse_date_option(char** cursor) {
 static bool parse_sort_option(char** data) {
   if (skip_char(data, '!')) options.sort_reverse = true;
 
-  if (skip_string(data, "date")) {
+         if (skip_string(data, "date")) {
     options.sort = SORT_DATE;
   } else if (skip_string(data, "from")) {
     options.sort = SORT_FROM;
@@ -612,17 +608,20 @@ static bool parse_options(char* data) {
     debug("data: %s\n", data);
 
     if (*data == 0) return true;
+
            if (skip_option(&data, "-monthly "  , "-m ")) {
       options.monthly = true;
     } else if (skip_option(&data, "-running "  , "-r ")) {
       options.running = true;
     } else if (skip_option(&data, "-nogrid "   , "-g ")) {
       options.no_grid = true;
+    } else if (skip_option(&data, "-percent "   , "-p ")) {
+      options.percent = true;
     } else if (skip_option(&data, "-sum "      , "-e ")) {
       options.sum = true;
     } else if (skip_option(&data, "-budget "   , "-b ")) {
       options.budget = true;
-    } else if (skip_option(&data, "-link "     , "-l ")) {
+    } else if (skip_option(&data, "-refs "     , "-l ")) {
       options.print_ref = true;
     } else if (skip_option(&data, "-flat "     , "-c ")) {
       options.flat = true;

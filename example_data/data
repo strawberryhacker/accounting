@@ -33,6 +33,7 @@
 }
 
 ? m Expenses.Food           4000.00
+? y Expenses.Food           1000.00
 ? m Expenses.Drinks          500.00
 ? m Expenses.Clothing        500.00
 ? m Expenses.Rent           4570.00
@@ -91,3 +92,4 @@ $ 04.01.2023 Assets.Visa Expenses.Food 23.00 '' 4
 $ 12.12.2022 Assets.Visa Expenses.Food 345.00 '' 5
 $ 01.01.2023 Assets.Visa Expenses.Food 234.00 'yyyyyyyyyyyyyyyyyyyyy' 6
 $ 01.01.2023 Assets.Visa Expenses.Food 234.00 '' 8
+$ 12.01.2023 Assets.Sparegris Assets.Visa 234.00 'Nothing' 1

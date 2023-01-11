@@ -12,7 +12,6 @@
 #include <assert.h>
 
 #define INPUT_WIDTH 40
-#define REFS_PATH "data/references"
 
 enum {
   STATE_DATE,
@@ -66,6 +65,7 @@ int copy_reference() {
 
   FILE* source_file = fopen(reference_buffer, "rb");
   FILE* dest_file = fopen(dest_path, "wb");
+
   assert(source_file);
   assert(dest_file);
 

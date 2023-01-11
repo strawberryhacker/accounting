@@ -7,7 +7,6 @@
 #include "terminal.h"
 #include <string.h>
 
-#define JOURNAL_FILE "data/journal.txt"
 Journal journal;
 
 static char* read_entire_file(const char* path) {
@@ -25,7 +24,7 @@ static char* read_entire_file(const char* path) {
 }
 
 void journal_append_transaction(Transaction* t) {
-  FILE* file = fopen(JOURNAL_FILE, "a");
+  FILE* file = fopen(JOURNAL_PATH, "a");
   assert(file);
   fprintf(file, "$ %02d.%02d.%d %s %s %.2lf '", t->date.day, t->date.month, t->date.year, journal.accounts[t->from].path, journal.accounts[t->to].path, t->amount);
   if (t->description) fprintf(file, "%s", t->description);
@@ -148,7 +147,7 @@ static void parse_budget(char** cursor) {
 }
 
 void journal_parse() {
-  char* content = read_entire_file(JOURNAL_FILE);
+  char* content = read_entire_file(JOURNAL_PATH);
   char* cursor = content;
 
   memset(&journal, 0, sizeof(journal));

@@ -1,9 +1,16 @@
-REDIRECT = /dev/tty3
+REDIRECT     = /dev/tty3
+
+JOURNAL_PATH = example_data/data
+REFS_PATH    = example_data/refs
+HISTORY_PATH = example_data/history
 
 FLAGS = -O1 \
 				-g \
 				-I. \
 				-DREDIRECT=\"$(REDIRECT)\" \
+				-DJOURNAL_PATH=\"$(JOURNAL_PATH)\" \
+				-DREFS_PATH=\"$(REFS_PATH)\" \
+				-DHISTORY_PATH=\"$(HISTORY_PATH)\" \
 				-Wall \
 				-Wextra \
 				-Wno-unused-function \

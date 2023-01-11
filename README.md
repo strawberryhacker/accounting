@@ -2,7 +2,9 @@
 
 Cash is a small, simple, double entry plain text accounting system, which supports interactivly adding transactions, printing transactions, showing balance, and more. It supports flexible expression based filtering based on accounts, descriptions, amounts, date, and more. It should be trivial to retrive any transaction you are looking for. It also support saving references, receipts, etc. in the transaction by dragging the file into the terminal while adding a transaction.
 
-*Note: error handling is bad!*
+*Note: error handling is bad*
+
+*Note: date range (-d) could be a lot better*
 
 ## Memory
 
@@ -54,7 +56,7 @@ add               (start interactively adding a transaction)
 
 ## Adding transactions
 
-The program will guide you thruogh adding a transaction. It uses the accounts from the journal, so you must add that first. If you want to save a reference together with the transaction, just drag the file into the terminal while filling out the transaction. The reference is saved in the data directory, see add.c (top).
+The program will guide you thruogh adding a transaction. It uses the accounts from the journal, so you must add that first. If you want to save a reference together with the transaction, just drag the file into the terminal while filling out the transaction. The reference is saved in the data directory, see add.c (top). Use ESC to go to the previous prompt.
 
 *Note: When dragging files into the terminal the path is just copied. I tried to support both Linux and WSL, but it is not tested well enough.*
 
@@ -95,11 +97,12 @@ Note: order are reversed such that the first date is before the last date
 -z -zero                (prints zeros when showing balance)
 -c -flat                (prints zeros when showing balance)
 -r -running             (print or use running total, can be used to check real balance)
--l -link                (show the reference in the transaction list)
+-l -refs                (show the reference in the transaction list)
 -f -filter [filter]     (pass selected transactions though the filter)
 -g -nogrid              (remove the grid in the output)
 -e -sum                 (unified transaction view only, adds a period based (m/q/y) running sum for the account)
 -b -budget              (balance view only, show budget minus the monthly or yearly total)
+-p -percent             (shows percent)
 ```
 
 ## Filter expressions
@@ -154,7 +157,17 @@ and sorts the output by amount.
 ```
 
 ```
-Monthly output between dates
+Show adding transaction with autocomplete.
+
+ add
+   (ref ...sktop/Capture.PNG)   13.12.2022   NOK 50.00   Assets.Visa  >  Expen
+                                                                         Expenses.Food
+                                                                         Expenses.Drinks
+                                                                         Expenses.Clothing
+```
+
+```
+Monthly output between dates.
 
                          nov.2021    dec.2021    mar.2022    apr.2022
    ------------------+-----------+-----------+-----------+-----------
@@ -190,7 +203,7 @@ Monthly output between dates
 ```
 
 ```
-Yearly output without zeros
+Yearly output without zeros.
 
                              2021        2022        2023
    ------------------+-----------+-----------+-----------
@@ -226,7 +239,7 @@ Yearly output without zeros
 ```
 
 ```
-Quarterly output filtered on accounts
+Quarterly output filtered on accounts.
 
                           q3.2021     q1.2022     q2.2022     q3.2022     q1.2023
    ------------------+-----------+-----------+-----------+-----------+-----------
@@ -240,7 +253,7 @@ Quarterly output filtered on accounts
 ```
 
 ```
-Output without grid and flat account view
+Output without grid and flat account view.
 
                               nov.2021    dec.2021    mar.2022    apr.2022
    Assets.Visa                  -23.32    10000.00     3000.00    -1014.00
@@ -266,6 +279,7 @@ Output without grid and flat account view
 
 ```
 Budget view. Only budget account are showed.
+
                               nov.2021    dec.2021    mar.2022    apr.2022
    Expenses.Food               3976.68     4000.00     4000.00     4000.00
    Expenses.Drinks              500.00      500.00      500.00      500.00

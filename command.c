@@ -107,6 +107,30 @@ static double compute_category_sums(Account* account, double* data) {
   return sum;
 }
 
+static void compute_budget_sum(Account* account, double* y, double* m) {
+  double y_sum = 0;
+  double m_sum = 0;
+
+  if (!account->is_category) {
+    *y = account->yearly_budget;
+    *m = account->monthly_budget;
+    return;
+  }
+
+  Account* child = account->childs;
+  while (child) {
+    double y, m;
+    compute_budget_sum(child, &y, &m);
+    y_sum += y;
+    m_sum += m;
+
+    child = child->next;
+  }
+
+  account->yearly_budget = y_sum;
+  account->monthly_budget = m_sum;
+}
+
 static void save_period_info(Transaction* last_transaction) {
   Period* period = &periods[period_count++];
   compute_category_sums(journal.root_account, initial_sums);
@@ -181,7 +205,7 @@ void print_balance(Command* command) {
   if (!command->flat)
     command->is_short = true;
 
-  if (!command->monthly)
+  if (command->quarterly)
     command->budget = false;
 
   if (command->running)
@@ -191,6 +215,7 @@ void print_balance(Command* command) {
     command->print_zeros = true;
 
   get_periods(command);
+  compute_budget_sum(journal.root_account, 0, 0);
 
   int width, height;
   get_size(&width, &height);
@@ -297,11 +322,30 @@ void print_balance(Command* command) {
     // Print balances.
     for (int j = 0; j < column_count; j++) {
       print("%c", command->no_grid ? ' ' : '|');
-      double tmp = periods[j].sum[i];
-      if (command->budget) {
-        tmp = (account->monthly_budget + account->yearly_budget / 12) - tmp;
+      if (command->percent) {
+        assert(account->parent); // Iterate from 1.
+        double parent_sum = periods[j].sum[account->parent->index];
+        double this_sum   = periods[j].sum[i];
+        int percent = (int)(100.0 * (this_sum / parent_sum));
+
+        if (parent_sum == 0 || percent == 0) {
+          print_chars(NUMBER_WIDTH, ' ');
+        } else {
+          print("%*d%% ", NUMBER_WIDTH - 2, percent);
+        }
+      } else {
+        double tmp = periods[j].sum[i];
+
+        if (command->budget) {
+          if (command->yearly) {
+            tmp = (12 * account->monthly_budget + account->yearly_budget) - tmp;
+          } else {
+            tmp = (account->monthly_budget + account->yearly_budget / 12) - tmp;
+          }
+        }
+
+        print_number_in_field(command->print_zeros, tmp, NUMBER_WIDTH, command->budget && (account->monthly_budget != 0 || account->yearly_budget != 0));
       }
-      print_number_in_field(command->print_zeros, tmp, NUMBER_WIDTH, command->budget && (account->monthly_budget != 0 || account->yearly_budget != 0));
     }
 
     print("\n");
@@ -428,7 +472,7 @@ static void print_transactions(Command* command) {
         print("\n");
       else 
         print_transaction_splitter(command, name_width);
-        
+
       memset(sums, 0, sizeof(sums));
     }
 
