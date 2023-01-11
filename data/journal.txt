@@ -1,0 +1,93 @@
+@ {
+  Assets {
+    Visa
+    Sparegris
+    Cash
+  }
+  Expenses {
+    Food
+    Drinks
+    Clothing
+    Rent
+    Adventures
+    Trips {
+      Abroad
+      Home
+    }
+    School
+    Other
+    Subscriptions
+    Interest
+  }
+  Income {
+    Salary
+    Other
+  }
+  Equity {
+    OpeningBalance
+  }
+  Liabilities {
+    CreditCard
+    StudentLoan
+  }
+}
+
+? m Expenses.Food           4000.00
+? m Expenses.Drinks          500.00
+? m Expenses.Clothing        500.00
+? m Expenses.Rent           4570.00
+? y Expenses.Rent           2000.00
+? m Expenses.Adventures      300.00
+? y Expenses.School          500.00
+? m Expenses.Other           500.00
+? m Expenses.Subscriptions   400.00
+? m Expenses.Interest        250.00
+? m Income.Salary          10000.00
+
+$ 12.12.2021 Equity.OpeningBalance Assets.Visa 10000 'Starting.'
+$ 12.11.2021 Assets.Visa Expenses.Food 23.32 'This is a description.'
+$ 12.12.2022 Assets.Visa Expenses.Food 23.32 'This is a description.'
+$ 12.07.2022 Assets.Visa Expenses.Food 23.32 'This is a description.'
+$ 12.12.2022 Assets.Visa Expenses.Food 23.32 'This is a description.'
+$ 12.12.2022 Income.Salary Assets.Visa 234.00 'Testing'
+$ 05.12.2022 Assets.Visa Expenses.Food 200.00 'Vi kjopte noe fisk'
+$ 05.06.2022 Assets.Visa Expenses.Clothing 450.00 ''
+$ 06.12.2022 Assets.Visa Expenses.Subscriptions 199.99 ''
+$ 07.04.2022 Assets.Visa Expenses.Subscriptions 570.00 ''
+$ 12.12.2022 Liabilities.StudentLoan Equity.OpeningBalance 3.00 'This is a test'
+$ 06.11.2022 Assets.Visa Assets.Sparegris 234.00 'Rema'
+$ 12.12.2022 Expenses.School Expenses.Interest 234.00 'Testing'
+$ 12.12.2022 Assets.Sparegris Expenses.Clothing 3.00 'This is '
+$ 12.12.2022 Assets.Visa Assets.Visa 2.00 'This is a description.'
+$ 12.12.2022 Assets.Sparegris Expenses.Adventures 234.00 'Vi kjopte noe fisk'
+$ 12.12.2022 Expenses.Adventures Assets.Cash 234.00 'This is a description.'
+$ 13.12.2022 Expenses.Rent Assets.Visa 234.00 'SiT'
+$ 01.01.2023 Expenses.Rent Assets.Visa 213.00 'Vi kjopte noe fisk'
+$ 12.12.2022 Expenses.Rent Assets.Visa 566.00 'SiT'
+$ 12.12.2022 Expenses.Drinks Expenses.Food 234.00 'This is a description.'
+$ 07.12.2022 Expenses.School Assets.Visa 234.00 'Rema'
+$ 05.01.2023 Assets.Visa Expenses.Food 2345.00 'Vi kjopte noe fisk'
+$ 15.03.2022 Income.Other Assets.Visa 3000.00 'Gave fra mamma og pappa'
+$ 09.12.2022 Assets.Visa Expenses.Food 500.00 'Rema'
+$ 04.04.2022 Assets.Visa Expenses.Rent 444.00 'Husleie'
+$ 12.12.2022 Assets.Sparegris Expenses.Clothing 234.00 'This is a description.'
+$ 04.01.2023 Assets.Visa Liabilities.StudentLoan 5000.00 'Lan'
+$ 03.01.2023 Liabilities.StudentLoan Assets.Visa 500000.00 'Starting.'
+$ 04.01.2023 Assets.Visa Expenses.Interest 500.00 'Starting.'
+$ 12.12.2022 Assets.Visa Assets.Cash 234.00 ''
+$ 12.12.2022 Assets.Visa Assets.Sparegris 234.00 'This is a test'
+$ 12.12.2022 Assets.Sparegris Assets.Visa 234.00 ''
+$ 10.12.2022 Assets.Visa Expenses.Adventures 34.00 'Rema'
+$ 12.12.2022 Assets.Visa Assets.Visa 234.00 'toeunth'
+$ 01.01.2023 Assets.Visa Assets.Visa 1.00 'Testing'
+$ 12.12.2022 Assets.Sparegris Assets.Cash 1123.00 'This is a mest'
+$ 12.12.2022 Assets.Sparegris Assets.Visa 234.00 'This is a description.'
+$ 01.01.2023 Assets.Visa Assets.Visa 1.00 'aoesuth'
+$ 02.01.2023 Assets.Visa Assets.Visa 2.00 'test'
+$ 01.01.2023 Assets.Visa Assets.Visa 1.00 'est'
+$ 01.01.2023 Assets.Visa Assets.Visa 234.00 ''
+$ 02.02.2023 Assets.Visa Expenses.Food 5.00 '' 3
+$ 04.01.2023 Assets.Visa Assets.Visa 23.00 '' 4
+$ 12.12.2022 Assets.Visa Expenses.Food 345.00 '' 5
+$ 01.01.2023 Assets.Visa Assets.Visa 234.00 'yyyyyyyyyyyyyyyyyyyyy' 6
+$ 01.01.2023 Assets.Visa Assets.Visa 234.00 '' 8

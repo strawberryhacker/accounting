@@ -1,0 +1,63 @@
+balance -monthly -running -filter account Expenses.V
+balance -monthly -running -filter account As
+balance -monthly -running -filter account Assets.Visa
+balance -monthly -running
+balance -monthly -running -filter account Assets.Visa
+balance -monthly -filter account Assets.Visa
+balance -monthly -filter account Assets.Visa and account 
+balance -monthly -filter account Assets.Visa and account Assets.Cash
+balance -monthly -filter account Assets.Visa or account Assets.Cash
+balance -monthly -filter account Assets.Visa or account Assets.Cash or account Ex
+balance -monthly -filter account Assets.Visa or account Assets.Cash or account Expenses
+balance -monthly -filter account Assets.Visa or account Assets.Cash or account Expenses
+balance -monthly 
+balance -monthly -budget
+balance -monthly -budget
+balance -monthly 
+balance -monthly -budget
+balance -monthly -budget
+balance -monthly -budget
+balance -monthly -budget
+balance -monthly -budget -d jan
+balance -monthly -budget -date jan
+balance -monthly -budget -running -date jan
+balance -monthly -budget -running -date jan
+balance -monthly -budget -running -date jan
+balance -monthly -budget -running -date jan
+balance -monthly -budget -running -date jan
+balance -monthly -budget -running -date jan
+balance -monthly -budget -date jan
+balance -monthly -budget -running -date jan
+balance -monthly -budget -date jan
+balance -monthly -budget -running -date jan
+balance -monthly -budget -date jan
+balance -monthly -budget -running -date jan
+balance -monthly -budget -date jan
+balance -monthly -budget -running -date jan
+balance -monthly -budget -date jan
+balance -monthly -budget -running -date jan
+balance -monthly -budget -date jan
+balance -monthly -budget -running -date jan
+balance -monthly -budget -date jan
+balance -monthly -date jan
+balance -monthly
+balance -monthly -running
+balance -monthly
+balance -monthly -running
+balance -monthly -running -date jan
+balance -monthly -running -date janprirnt
+print
+print -filter account Ope
+print -filter account Equity.OpeningBalance
+balance -monthly -running -date janprirnt
+balance -monthly -running -date jan
+balance -monthly -running
+balance -monthly -running -date jun
+balance -monthly -date jun
+balance -monthly -running -date jun
+balance -monthly -date jun
+balance -monthly -running -date jun
+balance -monthly -date jun
+balance -monthly -running -date jun
+balance -monthly -date jun
+balance -monthly -date jun
