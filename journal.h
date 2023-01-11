@@ -25,8 +25,8 @@ struct Account {
   double monthly_budget;
   double yearly_budget;
 
-  int index;
-  int count;
+  int index; // Index in jounal.accounts
+  int count; // This account plus all subaccounts.
 
   Account* parent;
   Account* next;
@@ -40,6 +40,8 @@ struct Transaction {
   int    from;
   int    to;
   int    reference;
+  double from_sum;
+  double to_sum;
 };
 
 struct Journal {

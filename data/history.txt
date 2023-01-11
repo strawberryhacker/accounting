@@ -1,63 +1,63 @@
-balance -monthly -running -filter account Expenses.V
-balance -monthly -running -filter account As
-balance -monthly -running -filter account Assets.Visa
-balance -monthly -running
-balance -monthly -running -filter account Assets.Visa
-balance -monthly -filter account Assets.Visa
-balance -monthly -filter account Assets.Visa and account 
-balance -monthly -filter account Assets.Visa and account Assets.Cash
-balance -monthly -filter account Assets.Visa or account Assets.Cash
-balance -monthly -filter account Assets.Visa or account Assets.Cash or account Ex
-balance -monthly -filter account Assets.Visa or account Assets.Cash or account Expenses
-balance -monthly -filter account Assets.Visa or account Assets.Cash or account Expenses
-balance -monthly 
-balance -monthly -budget
-balance -monthly -budget
-balance -monthly 
-balance -monthly -budget
-balance -monthly -budget
-balance -monthly -budget
-balance -monthly -budget
-balance -monthly -budget -d jan
-balance -monthly -budget -date jan
-balance -monthly -budget -running -date jan
-balance -monthly -budget -running -date jan
-balance -monthly -budget -running -date jan
-balance -monthly -budget -running -date jan
-balance -monthly -budget -running -date jan
-balance -monthly -budget -running -date jan
-balance -monthly -budget -date jan
-balance -monthly -budget -running -date jan
-balance -monthly -budget -date jan
-balance -monthly -budget -running -date jan
-balance -monthly -budget -date jan
-balance -monthly -budget -running -date jan
-balance -monthly -budget -date jan
-balance -monthly -budget -running -date jan
-balance -monthly -budget -date jan
-balance -monthly -budget -running -date jan
-balance -monthly -budget -date jan
-balance -monthly -budget -running -date jan
-balance -monthly -budget -date jan
-balance -monthly -date jan
-balance -monthly
-balance -monthly -running
-balance -monthly
-balance -monthly -running
-balance -monthly -running -date jan
-balance -monthly -running -date janprirnt
+print -monthly -running -nogrid
+print -monthly -running
+print -monthly -running -nogrid
+print -monthly -running
+print -monthly -running -nogrid
+print -monthly -running -nogrid
+print -monthly -running -nogrid
+print -monthly -running
+print -monthly -running -nogrid
+balance
+balance -nogrid
+balance -nogrid
+balance -nogrid
+balance -nogrid -flat
+balance -nogrid -flat -short
+balance -nogrid -flat -short
+balance -nogrid -flat -short
+balance -flat -short
+balance -flat -short -g
+balance -f
+balance -f
+balance -f
+balance -c
+balance -u
+balance 
+balance -g -m
+balance -m
+balance -m -z
+balance -m -z -d nov apr
+balance -m -z
+balance -m -z -d nov.2021 apr.2022
+balance -m -z -d -f nov.2021 apr.2022
+balance -m -z -d -c nov.2021 apr.2022
+balance -m -z -d -c nov.2021 apr.2022
+balance -m -z -d nov.2021 apr.2022
+balance -m -z -d nov.2021 apr.2022 -c
+balance -m -z -d nov.2021 apr.2022 -c -g
+balance -m -z -d nov.2021 apr.2022 -c -g -b
+balance -m -z -d nov.2021 apr.2022
+balance -m -z -d nov.2021 apr.2022 -c
+balance -m -z -d nov.2021 apr.2022 -c
+balance -m -z -d nov.2021 apr.2022 -c -g
+balance -m -z -d nov.2021 apr.2022 -g
+balance -q -z -d nov.2021 apr.2022 -g 
+balance -q -z -d nov.2021 apr.2022 
+balance -q -z
+balance -q -z -f account E
+balance -q -z -f account Assets or account Exp
+balance -q -z -f account Assets or account Expenses
+balance -q -z -f account Assets or account Expenses.r
+balance -q -z -f account Assets or account Expenses.Rent
+balance -q -f account Assets or account Expenses.Rent
+balance -q -z -f account Assets or account Expenses
+balance -q -z
+balance -q
+balance -y
 print
-print -filter account Ope
-print -filter account Equity.OpeningBalance
-balance -monthly -running -date janprirnt
-balance -monthly -running -date jan
-balance -monthly -running
-balance -monthly -running -date jun
-balance -monthly -date jun
-balance -monthly -running -date jun
-balance -monthly -date jun
-balance -monthly -running -date jun
-balance -monthly -date jun
-balance -monthly -running -date jun
-balance -monthly -date jun
-balance -monthly -date jun
+print -m
+print -m -t
+print -m -t
+print -m -t -g
+print -m -t -g -r -s
+print -m -t -g -r -e

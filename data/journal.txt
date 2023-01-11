@@ -58,7 +58,7 @@ $ 12.12.2022 Liabilities.StudentLoan Equity.OpeningBalance 3.00 'This is a test'
 $ 06.11.2022 Assets.Visa Assets.Sparegris 234.00 'Rema'
 $ 12.12.2022 Expenses.School Expenses.Interest 234.00 'Testing'
 $ 12.12.2022 Assets.Sparegris Expenses.Clothing 3.00 'This is '
-$ 12.12.2022 Assets.Visa Assets.Visa 2.00 'This is a description.'
+$ 12.12.2022 Assets.Visa Expenses.Food 2.00 'This is a description.'
 $ 12.12.2022 Assets.Sparegris Expenses.Adventures 234.00 'Vi kjopte noe fisk'
 $ 12.12.2022 Expenses.Adventures Assets.Cash 234.00 'This is a description.'
 $ 13.12.2022 Expenses.Rent Assets.Visa 234.00 'SiT'
@@ -78,16 +78,16 @@ $ 12.12.2022 Assets.Visa Assets.Cash 234.00 ''
 $ 12.12.2022 Assets.Visa Assets.Sparegris 234.00 'This is a test'
 $ 12.12.2022 Assets.Sparegris Assets.Visa 234.00 ''
 $ 10.12.2022 Assets.Visa Expenses.Adventures 34.00 'Rema'
-$ 12.12.2022 Assets.Visa Assets.Visa 234.00 'toeunth'
-$ 01.01.2023 Assets.Visa Assets.Visa 1.00 'Testing'
+$ 12.12.2022 Assets.Visa Expenses.Food 234.00 'toeunth'
+$ 01.01.2023 Assets.Visa Expenses.Food 1.00 'Testing'
 $ 12.12.2022 Assets.Sparegris Assets.Cash 1123.00 'This is a mest'
 $ 12.12.2022 Assets.Sparegris Assets.Visa 234.00 'This is a description.'
-$ 01.01.2023 Assets.Visa Assets.Visa 1.00 'aoesuth'
-$ 02.01.2023 Assets.Visa Assets.Visa 2.00 'test'
-$ 01.01.2023 Assets.Visa Assets.Visa 1.00 'est'
-$ 01.01.2023 Assets.Visa Assets.Visa 234.00 ''
+$ 01.01.2023 Assets.Visa Expenses.Food 1.00 'aoesuth'
+$ 02.01.2023 Assets.Visa Expenses.Food 2.00 'test'
+$ 01.01.2023 Assets.Visa Expenses.Food 1.00 'est'
+$ 01.01.2023 Assets.Visa Expenses.Food 234.00 ''
 $ 02.02.2023 Assets.Visa Expenses.Food 5.00 '' 3
-$ 04.01.2023 Assets.Visa Assets.Visa 23.00 '' 4
+$ 04.01.2023 Assets.Visa Expenses.Food 23.00 '' 4
 $ 12.12.2022 Assets.Visa Expenses.Food 345.00 '' 5
-$ 01.01.2023 Assets.Visa Assets.Visa 234.00 'yyyyyyyyyyyyyyyyyyyyy' 6
-$ 01.01.2023 Assets.Visa Assets.Visa 234.00 '' 8
+$ 01.01.2023 Assets.Visa Expenses.Food 234.00 'yyyyyyyyyyyyyyyyyyyyy' 6
+$ 01.01.2023 Assets.Visa Expenses.Food 234.00 '' 8

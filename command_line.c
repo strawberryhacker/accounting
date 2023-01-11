@@ -602,37 +602,45 @@ static bool parse_sort_option(char** data) {
   return true;
 }
 
+static bool skip_option(char** data, char* option, char* short_option) {
+  return skip_string(data, option) || skip_string(data, short_option);
+}
+
 static bool parse_options(char* data) {
   while (true) {
     skip_blank(&data);
     debug("data: %s\n", data);
-    if (*data == 0) return true;
 
-    if (skip_string(&data, "-monthly")) {
+    if (*data == 0) return true;
+           if (skip_option(&data, "-monthly "  , "-m ")) {
       options.monthly = true;
-    } else if (skip_string(&data, "-running")) {
+    } else if (skip_option(&data, "-running "  , "-r ")) {
       options.running = true;
-    } else if (skip_string(&data, "-budget")) {
+    } else if (skip_option(&data, "-nogrid "   , "-g ")) {
+      options.no_grid = true;
+    } else if (skip_option(&data, "-sum "      , "-e ")) {
+      options.sum = true;
+    } else if (skip_option(&data, "-budget "   , "-b ")) {
       options.budget = true;
-    } else if (skip_string(&data, "-ref")) {
+    } else if (skip_option(&data, "-link "     , "-l ")) {
       options.print_ref = true;
-    } else if (skip_string(&data, "-flat")) {
+    } else if (skip_option(&data, "-flat "     , "-c ")) {
       options.flat = true;
-    } else if (skip_string(&data, "-zero")) {
+    } else if (skip_option(&data, "-zero "     , "-z ")) {
       options.print_zeros = true;
-    } else if (skip_string(&data, "-date")) {
+    } else if (skip_option(&data, "-date "     , "-d ")) {
       if (!parse_date_option(&data)) return false;
-    } else if (skip_string(&data, "-sort")) {
+    } else if (skip_option(&data, "-sort "     , "-s ")) {
       if (!parse_sort_option(&data)) return false;
-    } else if (skip_string(&data, "-unify")) {
+    } else if (skip_option(&data, "-unify "    , "-u ")) {
       options.unify = true;
-    } else if (skip_string(&data, "-quarterly")) {
+    } else if (skip_option(&data, "-quarterly ", "-q ")) {
       options.quarterly = true;
-    } else if (skip_string(&data, "-yearly")) {
+    } else if (skip_option(&data, "-yearly "   , "-y")) {
       options.yearly = true;
-    } else if (skip_string(&data, "-short")) {
+    } else if (skip_option(&data, "-short "    , "-t")) {
       options.is_short = true;
-    } else if (skip_string(&data, "-filter")) {
+    } else if (skip_option(&data, "-filter "   , "-f ")) {
       options.filter = parse_filter(&data);
       if (!options.filter) return false;
       apply_filter(options.filter, 0);
@@ -660,6 +668,11 @@ static bool parse_command_line() {
   memset(&options, 0, sizeof(options));
   char buffer[INPUT_SIZE];
   strcpy(buffer, input.data);
+
+  // Append a space to match -option(space).
+  buffer[input.size    ] = ' ';
+  buffer[input.size + 1] = 0;
+
   char* data = buffer;
 
   skip_blank(&data);

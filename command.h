@@ -25,9 +25,11 @@ typedef struct {
   bool yearly;
   bool is_short;
   bool running;
+  bool sum;
   bool budget;
   bool print_ref;
   bool print_zeros;
+  bool no_grid;
   bool flat;
 } Command;
 
