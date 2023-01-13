@@ -42,6 +42,8 @@ struct Transaction {
   int    reference;
   double from_sum;
   double to_sum;
+  bool   unify_print_from;
+  bool   unify_print_to;
 };
 
 struct Journal {

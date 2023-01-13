@@ -107,7 +107,7 @@ static void* parse_filter_primary(char** cursor) {
           return 0;
         }
       }
-    } else if (is_number(**cursor)) {
+    } else if (is_number(**cursor) || (**cursor == '-' && is_number(*(*cursor + 1)))) {
       primary->type = PRIMARY_NUMBER;
       primary->number = get_double(cursor);
     } else {

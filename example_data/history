@@ -1,63 +1,63 @@
+balance -m
+balance -m
+balance -m
+balance -m
+balance -m
+balance -m
+balance -m -r
 print
-print -m
-print -m -t
-print -m -t
-print -m -t -g
-print -m -t -g -r -s
-print -m -t -g -r -e
+print
+print -f from Vi
+print -f from Assets.Visa
+print -f from Assets.Visa and to Fo
+print -f from Assets.Visa and to Expenses.Food
+print -f to fo
+print -f to Expenses.Food
+print -f account f
+print -f account Expenses.Food
+balence
 balance
-balance -m
-balance -m -p
-balance -m -p
-balance -m -p
-balance -m -p
-balance -m -p
-balance -m
-balance -m -z
-balance -m
-balance -m
-balance -m -p
-balance -m -p
-balance -m -p
-balance -m -p -c
-balance -m -p -c
-balance -m -p -c -f aeousnth
-balance -m -p -c -f account aeusnth
-balance -m -p -c -f account aeusnth
-balance -m -p -c -f account aeusnth
-balance -m -p -c -f account aeusnth
-balance -m -p -c -f account Vis
-balance -m -p -c -f account Assets.Visa
-balance -m -p -c -f account Assets.Visa -g
-balance
-balance -m
-balance -m -b
-balance -y -b
-aoe usnaotehu snaohutnsho nuh naso husnaoh snuo hsnuh sn hsnu haosneuhsnaoesnu sntaoh usnoa sun aosnu oaensuh ntasoh usaountaoeu nsaoh unaoeh unaoh nseuh aosneuh snaoh esnuh aonseuh snao heunsah snuth nsh 
-balance -y -b
-balance -y -b
-balance -b
-balance -b -m
-balance -b
-balance -b
-balance
-balance -d 2023
-balance -d 2022
-balance -y -d 2022
-balance -y -d 2022
-print
-print -g
-print
-print -m
-print -m -c
-print -m -t
-print
+print 
+print -f to Vi
+print -f to Assets.Visa
+print -f from Assets.Visa
+print -f from Assets.Visa
+print -f to Assets.Visa
+print -f to fo
+print -f to Expenses.Food
+print -f from Expenses.Food
+print -u -f from Expenses.Food
+print -u -f from Expenses.Food
+print -u -f to Expenses.Food
+print -u -f to Expenses.Food
+print -u -f to Expenses.Food
+print -u -f from Expenses.Food
+print -u -f to Expenses.Food
+print -u -f from Expenses.Food
+print -u -f from Expenses.Food
+print -u -f from Expenses.Food
 clear
-print
-add
-cleaor
-clear
-add
-add
-add
-clear
+print -u -f from Expenses.Food
+print -u -f to Expenses.Food
+print -u -f to Expenses.Food
+print -f to Expenses.Food
+print -u -f to Expenses.Food
+print -u -f from Expenses.Food
+print -u -f from Expenses.Food
+print -u -f from Expenses.Food
+print -u -f from Expenses.Food
+print -u -f to Expenses.Food
+print -u -f to Expenses.Food
+print -u -f from Expenses.Food
+print -u -f to Expenses.Food
+print -u -f from Expenses.Food
+print -u -f to Expenses.Food
+print -u -f from Expenses.Food
+print -u -f to Expenses.Food
+print -u -f to Expenses.Food
+print -u
+print -u -f from Vis
+print -u -f from Assets.Visa
+print -u -f account Vi
+print -u -f account Assets.Visa
+print -u -f account Assets.Visa

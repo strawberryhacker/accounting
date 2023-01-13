@@ -1,8 +1,12 @@
-REDIRECT     = /dev/tty3
+REDIRECT     = /dev/tty2
 
 JOURNAL_PATH = example_data/data
 REFS_PATH    = example_data/refs
 HISTORY_PATH = example_data/history
+
+#JOURNAL_PATH = ../private-accounting/data
+#REFS_PATH    = ../private-accounting/refs
+#HISTORY_PATH = ../private-accounting/history
 
 FLAGS = -O1 \
 				-g \
@@ -19,12 +23,12 @@ FLAGS = -O1 \
 				-Wno-unused-parameter \
 
 FILES = main.c \
-        journal.c \
-        text.c \
-        command_line.c \
-        suggestions.c \
-        terminal.c \
-        input.c \
+				journal.c \
+				text.c \
+				command_line.c \
+				suggestions.c \
+				terminal.c \
+				input.c \
 				add.c \
 				history.c \
 				command.c \

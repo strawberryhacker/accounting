@@ -280,6 +280,7 @@ void print_balance(Command* command) {
     Account* account = &journal.accounts[i];
 
     if (command->budget && account->monthly_budget == 0 && account->yearly_budget == 0) {
+      debug("Skipping %s\n", account->path);
       continue;
     }
 
@@ -326,12 +327,12 @@ void print_balance(Command* command) {
         assert(account->parent); // Iterate from 1.
         double parent_sum = periods[j].sum[account->parent->index];
         double this_sum   = periods[j].sum[i];
-        int percent = (int)(100.0 * (this_sum / parent_sum));
+        double percent = (double)(100.0 * (this_sum / parent_sum));
 
         if (parent_sum == 0 || percent == 0) {
           print_chars(NUMBER_WIDTH, ' ');
         } else {
-          print("%*d%% ", NUMBER_WIDTH - 2, percent);
+          print("%*.2lf%%", NUMBER_WIDTH - 1, percent);
         }
       } else {
         double tmp = periods[j].sum[i];
@@ -395,16 +396,15 @@ static void print_transaction_splitter(Command* command, int name_width) {
   print("-------------\n");
 }
 
-void print_transaction(Command* command, Transaction* t, double* sums, bool swap, bool negate) {
+void print_transaction(Command* command, Transaction* t, double* sums) {
   start_line();
   print("%02d.%s.%4d", t->date.day, month_names[t->date.month - 1], t->date.year);
 
   int name_width = command->is_short ? get_max_account_name_length(0) : get_max_account_path_length(0);
   int padding;
 
-  int from = swap ? t->to   : t->from;
-  int to   = swap ? t->from : t->to;
-  double amount = negate ? -t->amount : t->amount;
+  int from = t->from;
+  int to   = t->to;
   char splitter = command->no_grid ? ' ' : '|';
 
   print(" %c ", splitter);
@@ -421,16 +421,16 @@ void print_transaction(Command* command, Transaction* t, double* sums, bool swap
 
 
   print(" %c ", splitter);
-  print_number_in_field(command->print_zeros, amount, NUMBER_WIDTH, false);
+  print_number_in_field(command->print_zeros, t->amount, NUMBER_WIDTH, false);
 
   if (command->running) {
     print(" %c ", splitter);
-    print_number_in_field(command->print_zeros, swap ? t->to_sum : t->from_sum, NUMBER_WIDTH, false);
+    print_number_in_field(command->print_zeros, t->from_sum, NUMBER_WIDTH, false);
   }
 
   if (command->sum) {
     print(" %c ", splitter);
-    print_number_in_field(command->print_zeros, sums[swap ? t->to : t->from], NUMBER_WIDTH, false);
+    print_number_in_field(command->print_zeros, sums[t->from], NUMBER_WIDTH, false);
   }
 
   if (command->print_ref) {
@@ -479,26 +479,26 @@ static void print_transactions(Command* command) {
     sums[trans->from] -= trans->amount;
     sums[trans->to]   += trans->amount;
 
-    // Don't know about how to select the currect transactions based on the filter.
     if (command->unify) {
-      int tmp = trans->to;
-      trans->to = -1;
-      int status = command->filter == 0 || apply_filter(command->filter, trans);
+      trans->amount *= -1;
+
+      if (trans->unify_print_from)
+        print_transaction(command, transactions[i], sums);
+
+      trans->amount *= -1;
+
+      int tmp = trans->from;
+      trans->from = trans->to;
       trans->to = tmp;
-      if (status) {
-        print_transaction(command, transactions[i], sums, false, true);
-      }
+
+      if (trans->unify_print_to)
+        print_transaction(command, transactions[i], sums);
 
       tmp = trans->from;
-      trans->from = -1;
-      status = command->filter == 0 || apply_filter(command->filter, trans);
-      trans->from = tmp;
-      if (status) {
-        print_transaction(command, transactions[i], sums, true, false);
-      }
-
+      trans->from = trans->to;
+      trans->to = tmp;
     } else {
-      print_transaction(command, transactions[i], sums, false, false);
+      print_transaction(command, transactions[i], sums);
     }
 
     prev_trans = trans;
@@ -535,11 +535,39 @@ void execute_command(Command* command) {
   for (int i = 0; i < journal.raw_transaction_count; i++) {
     Transaction* trans = transactions[i];
 
-    bool date_discard   = command->date_present && (date_is_smaller(&trans->date, &command->from.date) || date_is_bigger(&trans->date, &command->to.date));
-    bool filter_discard = command->type != COMMAND_BALANCE && command->filter && !apply_filter(command->filter, trans);
-    bool discard = date_discard || filter_discard;
+    bool date_keep_transaction = !command->date_present || (!date_is_smaller(&trans->date, &command->from.date) && !date_is_bigger(&trans->date, &command->to.date));
+    bool filter_keep;
 
-    if (!discard && !transaction_count)
+    if (command->unify) {
+      trans->unify_print_from = false;
+      trans->unify_print_to = false;
+
+      trans->amount *= -1;
+      
+      if (command->filter == 0 || apply_filter(command->filter, trans))
+        trans->unify_print_from = true;
+      
+      trans->amount *= -1;
+
+      int tmp = trans->from;
+      trans->from = trans->to;
+      trans->to = tmp;
+
+      if (command->filter == 0 || apply_filter(command->filter, trans))
+        trans->unify_print_to = true;
+
+      tmp = trans->from;
+      trans->from = trans->to;
+      trans->to = tmp;
+
+      filter_keep = trans->unify_print_from || trans->unify_print_to;
+    } else {
+      filter_keep = command->type == COMMAND_BALANCE || command->filter == 0 || apply_filter(command->filter, trans);
+    }
+
+    bool keep = filter_keep && date_keep_transaction;
+
+    if (keep && transaction_count == 0)
       memcpy(initial_sums, running_sums, sizeof(running_sums));
 
     running_sums[trans->from] -= trans->amount;
@@ -548,12 +576,16 @@ void execute_command(Command* command) {
     trans->from_sum = running_sums[trans->from];
     trans->to_sum   = running_sums[trans->to];
 
-    if (!discard)
+    if (keep)
       transactions[transaction_count++] = trans;
   }
 
-  if (!transaction_count)
+  if (!transaction_count) {
+    start_line();
+    print("\033[31mNo transactions");
+    format_off();
     return;
+  }
 
   // Update search filters.
   if (command->type == COMMAND_BALANCE)
