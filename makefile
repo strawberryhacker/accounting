@@ -1,12 +1,12 @@
 REDIRECT     = /dev/tty2
 
-JOURNAL_PATH = example_data/data
-REFS_PATH    = example_data/refs
-HISTORY_PATH = example_data/history
+#JOURNAL_PATH = example_data/data
+#REFS_PATH    = example_data/refs
+#HISTORY_PATH = example_data/history
 
-#JOURNAL_PATH = ../private-accounting/data
-#REFS_PATH    = ../private-accounting/refs
-#HISTORY_PATH = ../private-accounting/history
+JOURNAL_PATH = ../private-accounting/data
+REFS_PATH    = ../private-accounting/refs
+HISTORY_PATH = ../private-accounting/history
 
 FLAGS = -O1 \
 				-g \
